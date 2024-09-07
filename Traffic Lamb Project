@@ -1,0 +1,30 @@
+// C++ code
+//
+
+#define kirmizi_led 10
+#define sari_led 11
+#define yesil_led 12
+
+void setup()
+{
+  pinMode(kirmizi_led, OUTPUT);
+  pinMode(sari_led, OUTPUT);
+  pinMode(yesil_led, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(kirmizi_led, HIGH);
+  delay(3000); // Kırmızı led 3 saniye yanar ve söner
+  digitalWrite(kirmizi_led, LOW);
+  
+  
+  digitalWrite(sari_led,HIGH);
+  delay(1000); // Ardından sarı led 1 saniye yanar ve söner
+  digitalWrite(sari_led,LOW);
+  
+  digitalWrite (yesil_led,HIGH);
+  delay(3000); // Son olarak yeşil led 3 saniye yanar ve söner
+  digitalWrite(yesil_led,LOW);
+}
+
