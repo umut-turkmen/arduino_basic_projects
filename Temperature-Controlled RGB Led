@@ -1,0 +1,54 @@
+// C++ code
+
+
+//Pinlere anlaşılır bir değişken ismi tanımlandı
+const int kirmizi = 8, mavi = 7, yesil = 6, sensorPin = A0; 
+  
+  
+  
+void setup()
+{
+  Serial.begin(9600); //Seri iletişim başlatıldı
+  
+  //Pinlerin giriş mi çıkış mı olduğu tanımlandı
+  pinMode(kirmizi, OUTPUT);
+  pinMode(mavi,OUTPUT);
+  pinMode(yesil,OUTPUT);
+         
+}
+
+void loop()
+{
+  //Sensör verisini ham analog eder
+  int sensorValue = analogRead(sensorPin);
+  
+  float voltage = sensorValue * (5.0/1023.0); //Voltajı hesaplar
+  float temperatureC = (voltage - 0.5) * 100; //Santigrata dönüşüm
+  
+  //Sıcaklığı ekrana yazdırır
+  Serial.print("Sıcaklık: ");
+  Serial.print(temperatureC);
+  Serial.println(" C");
+  
+  //Sıcaklığa bağlı koşul blokları
+  if (temperatureC >= 15 && temperatureC < 30){
+    digitalWrite(kirmizi,HIGH);
+    digitalWrite(yesil,LOW);
+    digitalWrite(mavi,LOW);
+  } else if (temperatureC >=30 && temperatureC < 45){
+    digitalWrite(kirmizi,LOW);
+    digitalWrite(yesil,HIGH);
+    digitalWrite(mavi,LOW);
+  } else if (temperatureC >= 45){
+    digitalWrite(kirmizi,LOW);
+    digitalWrite(yesil,LOW);
+    digitalWrite(mavi,HIGH);
+  } else {
+    Serial.println("Ölçülemeyen sıcaklık değeri!");
+  }
+    
+    delay(1000);
+    
+  
+  
+}
